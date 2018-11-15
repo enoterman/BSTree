@@ -1,0 +1,34 @@
+import java.util.*;
+public class Demo
+{
+    public static void main(String[] args)
+    {
+        Random r= new Random();
+        BSTree<Integer> tree= new BSTree<>();
+        int num, level, key;
+        while(true)
+        {
+            num= r.nextInt(200000);
+            if(!tree.contains(num)) tree.add(num);
+            if(tree.size()== 100000) break;
+        } 
+        System.out.println("Tree Size: "+ tree.size());
+        System.out.println("Tree Height: "+ tree.height());
+        
+        int i= 0;
+        double sum= 0;
+        while(true)
+        { 
+            key=r.nextInt(2000);
+            level= tree.findLevelOf(key);
+            if(level!= -1)
+            {
+                System.out.printf("Search %d requires %d searches\n", key, level);
+                sum+= level;
+                i+= 1;
+            }
+            if(i== 10) break;
+        }
+        System.out.println("Average number of comparisons: " + sum/10);
+    }
+}
